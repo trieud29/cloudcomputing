@@ -1,0 +1,14 @@
+FROM openjdk:11-jdk-slim
+
+RUN apt-get update && apt-get install -y wget
+RUN wget -qO- https://downloads.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz | tar xvz -C /opt
+ENV SPARK_HOME /opt/spark-3.5.1-bin-hadoop3
+
+COPY winequalitymodel /winequalitymodel
+COPY Homework2Pred-1.0-SNAPSHOT.jar /
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
