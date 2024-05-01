@@ -1,0 +1,27 @@
+In AWS head over to EC2 and click launch instances
+  - Select the number instances being 5 (4 instances for training one for prediction)
+  - Select UBUNTU ami
+  - I used a personally generated key but vockey works
+  - Select roles if you're planning on trying to use S3
+  -Connecting to them is easy with the provided SSH example when you click on connect
+
+Terminal Commands:
+sudo apt update
+sudo apt install docker.io
+scp (key) (file) (EC2 instance public IP)
+sudo apt install default jre (java)
+
+  - In IntelliJ
+    - See pom.xml files as well for dependencies
+    - mvn clean install compile package
+    - $SPARK_HOME/sbin start spark-master
+    -$SPARK_HOME/bin/spark-submit 
+    -workers are connected to master, when you start them you need to point workers toward the master
+After you trained your data
+- Model needs to be moved to new instance
+-package your prediction code and it would be quite easy to run this locally
+-After your docker file is finished
+-docker build -t imagename
+-docker push (dockerhubusername)/image name:tag
+- need to pull it to use on other env
+-docker run v- /home/ubuntu:/ imagename csvfile
